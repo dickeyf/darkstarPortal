@@ -1,7 +1,6 @@
 language: java
 jdk:
-  - openjdk7
-  - oraclejdk7
+  - oraclejdk8
 script: ./gradlew -q jar oneJar distZip
 after_script:
   - test -f ./build/libs/dropwizard-gradle.jar
