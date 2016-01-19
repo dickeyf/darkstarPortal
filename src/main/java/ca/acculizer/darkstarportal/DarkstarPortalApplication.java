@@ -1,5 +1,6 @@
 package ca.acculizer.darkstarportal;
 
+import ca.acculizer.darkstarportal.services.accounts.AccountsRestResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,6 +25,9 @@ public class DarkstarPortalApplication extends Application<DarkstarPortalConfigu
 
     @Override
     public void run(DarkstarPortalConfiguration configuration, Environment environment) throws Exception {
+        final AccountsRestResource accountsRestResource = new AccountsRestResource();
+        environment.jersey().register(accountsRestResource);
+
         final DarkstarPortalCheck healthCheck = new DarkstarPortalCheck();
         environment.healthChecks().register("portalCheck", healthCheck);
     }

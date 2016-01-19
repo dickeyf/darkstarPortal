@@ -10,15 +10,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class DarkstarPortalConfiguration extends Configuration {
     @NotEmpty
     private
-    String testConfig;
+    String mysql;
 
     @JsonProperty
-    public String getTestConfig() {
-        return testConfig;
+    public String getMysql() {
+        return mysql;
     }
 
     @JsonProperty
-    public void setTestConfig(String testConfig) {
-        this.testConfig = testConfig;
+    public void setMysql(String mysql) {
+        this.mysql = mysql;
     }
 }
