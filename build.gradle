@@ -24,6 +24,7 @@ buildscript {
 
 project.ext {
     dropwizardVersion = '0.9.1'
+    mysqlConnectorVersion = '5.1.38'
 }
 
 repositories {
@@ -34,6 +35,8 @@ dependencies {
     compile (
             'io.dropwizard:dropwizard-core:' + dropwizardVersion,
             'io.dropwizard:dropwizard-auth:' + dropwizardVersion,
+            'io.dropwizard:dropwizard-jdbi:' + dropwizardVersion,
+            'mysql:mysql-connector-java:' + mysqlConnectorVersion
     )
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

@@ -2,23 +2,27 @@ package ca.acculizer.darkstarportal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
-import org.hibernate.validator.constraints.NotEmpty;
+import io.dropwizard.db.DataSourceFactory;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Francois Dickey on 2016-01-18.
  */
 public class DarkstarPortalConfiguration extends Configuration {
-    @NotEmpty
-    private
-    String mysql;
+    @Valid
+    @NotNull
+    private DataSourceFactory database = new DataSourceFactory();
 
-    @JsonProperty
-    public String getMysql() {
-        return mysql;
+
+    @JsonProperty("database")
+    public DataSourceFactory getDatabase() {
+        return database;
     }
 
-    @JsonProperty
-    public void setMysql(String mysql) {
-        this.mysql = mysql;
+    @JsonProperty("database")
+    public void setDatabase(DataSourceFactory database) {
+        this.database = database;
     }
 }
