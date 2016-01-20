@@ -13,7 +13,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
  */
 @RegisterMapper(AccountMapper.class)
 public interface AccountDAO {
-    @SqlUpdate("insert into accounts (id, login, password, email, content_ids, status, priv) values (:id, :login, :password, :email, :contentIds, :status, :privilege)")
+    @SqlUpdate("insert into accounts (id, login, password, email, content_ids, status, priv) values (:id, :login, password(:password), :email, :contentIds, :status, :privilege)")
     void insert(@BindBean Account account);
 
 
@@ -23,6 +23,6 @@ public interface AccountDAO {
     @SqlQuery("select * from accounts where login = :login")
     Account findByName(@Bind("login") String login);
 
-    @SqlQuery("select * from accounts where login = :login and password = :password")
+    @SqlQuery("select * from accounts where login = :login and password = password(:password)")
     Account findByLogin(@Bind("login") String login, @Bind("password") String password);
 }
