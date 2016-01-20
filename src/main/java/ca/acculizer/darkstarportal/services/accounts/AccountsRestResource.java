@@ -2,6 +2,8 @@ package ca.acculizer.darkstarportal.services.accounts;
 
 import ca.acculizer.darkstarportal.daos.AccountDAO;
 import ca.acculizer.darkstarportal.model.Account;
+import ca.acculizer.darkstarportal.security.Token;
+import ca.acculizer.darkstarportal.security.TokenManager;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;
@@ -19,9 +21,11 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountsRestResource {
     private AccountDAO accountDAO;
+    private TokenManager tokenManager;
 
-    public AccountsRestResource(AccountDAO accountDAO) {
+    public AccountsRestResource(TokenManager tokenManager, AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
+        this.tokenManager = tokenManager;
     }
 
     @GET
@@ -29,7 +33,8 @@ public class AccountsRestResource {
     public Response login(@QueryParam("login") String login, @QueryParam("password") String password) {
         Account account = accountDAO.findByLogin(login, password);
         if (account != null) {
-            return Response.ok(account).build();
+            Token token = tokenManager.getTokenForAccount(account);
+            return Response.ok(token).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }

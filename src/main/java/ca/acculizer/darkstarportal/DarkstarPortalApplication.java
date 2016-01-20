@@ -1,6 +1,7 @@
 package ca.acculizer.darkstarportal;
 
 import ca.acculizer.darkstarportal.daos.AccountDAO;
+import ca.acculizer.darkstarportal.security.TokenManager;
 import ca.acculizer.darkstarportal.services.accounts.AccountsRestResource;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -28,11 +29,13 @@ public class DarkstarPortalApplication extends Application<DarkstarPortalConfigu
 
     @Override
     public void run(DarkstarPortalConfiguration configuration, Environment environment) throws Exception {
+        final TokenManager tokenManager = new TokenManager();
+        tokenManager.start();
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDatabase(), "mysql");
         final AccountDAO accountDAO = jdbi.onDemand(AccountDAO.class);
 
-        environment.jersey().register(new AccountsRestResource(accountDAO));
+        environment.jersey().register(new AccountsRestResource(tokenManager, accountDAO));
 
         final DarkstarPortalCheck healthCheck = new DarkstarPortalCheck();
         environment.healthChecks().register("portalCheck", healthCheck);
