@@ -1,2 +1,2 @@
 #!/bin/bash
-JAVA_HOME=/teamcity/jre1.8.0_65 /teamcity/agent/bin/agent.sh run
+JAVA_HOME=/teamcity/jdk1.8.0_71 /teamcity/agent/bin/agent.sh run
