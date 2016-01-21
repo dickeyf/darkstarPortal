@@ -2,7 +2,7 @@
 set -e
 cd darkstarPortal-client
 npm install
-bower install
+bower install --allow-root
 ember build
 
 # Copy the built ember application to the assets folder

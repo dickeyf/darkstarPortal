@@ -14,7 +14,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 @RegisterMapper(AccountMapper.class)
 public interface AccountDAO {
     @SqlUpdate("insert into accounts (id, login, password, email, content_ids, status, priv) values (:id, :login, password(:password), :email, :contentIds, :status, :privilege)")
-    void insert(@BindBean Account account);
+    void insert(@BindBean Account account, @Bind("password") String password);
 
 
     @SqlQuery("select * from accounts where id = :id")
