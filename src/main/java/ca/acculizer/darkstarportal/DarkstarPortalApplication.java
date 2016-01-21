@@ -4,6 +4,7 @@ import ca.acculizer.darkstarportal.daos.AccountDAO;
 import ca.acculizer.darkstarportal.security.TokenManager;
 import ca.acculizer.darkstarportal.services.accounts.AccountsRestResource;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,6 +25,7 @@ public class DarkstarPortalApplication extends Application<DarkstarPortalConfigu
 
     @Override
     public void initialize(Bootstrap<DarkstarPortalConfiguration> bootstrap) {
+        bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
     }
 
 

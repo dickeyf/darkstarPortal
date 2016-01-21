@@ -5,6 +5,13 @@
 .gradle
 build/
 
+darkstar/*.jar
+darkstar/LICENSE
+darkstarPortal.tar.gz
+
+# Ignore staged assets
+src/main/resources/assets
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
