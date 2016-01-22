@@ -5,8 +5,8 @@
 .gradle
 build/
 
-darkstar/*.jar
-darkstar/LICENSE
+darkstarPortal/*.jar
+darkstarPortal/LICENSE
 darkstarPortal.tar.gz
 
 # Ignore staged assets

@@ -4,5 +4,5 @@
 ./gradlew oneJar
 
 # Copy the fat jar to the package
-cp build/libs/darkstarPortal-1.0-SNAPSHOT-standalone.jar darkstar/
-cp LICENSE darkstar/
+cp build/libs/darkstarPortal-1.0-SNAPSHOT-standalone.jar darkstarPortal/
+cp LICENSE darkstarPortal/

@@ -8,6 +8,6 @@ set -e
 ./stageserver.sh
 
 # Archive the package
-tar czf darkstarPortal.tar.gz darkstar
+tar czf darkstarPortal.tar.gz darkstarPortal
 
 # I said.... SHIP IT!
